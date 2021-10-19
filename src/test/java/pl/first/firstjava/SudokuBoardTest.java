@@ -37,7 +37,7 @@ public class SudokuBoardTest {
             for (int j = 0; j < 9; j++) {
                 secondTry[i][j] = obj2.getNumber(i, j);
             }
-        }
+       }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (firstTry[i][j] != secondTry[i][j]) {
