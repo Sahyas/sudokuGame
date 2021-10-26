@@ -95,12 +95,4 @@ public class SudokuBoard {
             System.out.print("\n");
         }
     }
-
-    //MAIN//
-    public static void main(String[] args) {
-        SudokuBoard obj = new SudokuBoard();
-        if (obj.fillBoard()) {
-            obj.print();
-        }
-    }
 }

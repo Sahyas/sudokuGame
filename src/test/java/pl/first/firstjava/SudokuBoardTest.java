@@ -9,13 +9,9 @@ public class SudokuBoardTest {
     }
 
     @Test
-    public void testSudoku() {
+    public void canInsertTest() {
         SudokuBoard obj = new SudokuBoard();
-        SudokuBoard obj2 = new SudokuBoard();
         obj.setNumber(0, 0, 5);
-        boolean flag = false;
-        int[][] firstTry = new int[9][9];
-        int[][] secondTry = new int[9][9];
         //check row
         assertFalse(obj.canInsert(0, 8, 5));
         assertTrue(obj.canInsert(0, 8, 6));
@@ -25,6 +21,15 @@ public class SudokuBoardTest {
         //check box
         assertFalse(obj.canInsert(2, 2, 5));
         assertTrue(obj.canInsert(2, 2, 6));
+    }
+
+    @Test
+    public void randomNumberTest() {
+        SudokuBoard obj = new SudokuBoard();
+        SudokuBoard obj2 = new SudokuBoard();
+        boolean flag = false;
+        int[][] firstTry = new int[9][9];
+        int[][] secondTry = new int[9][9];
         //check if random
         obj.fillBoard();
         for (int i = 0; i < 9; i++) {
@@ -37,7 +42,7 @@ public class SudokuBoardTest {
             for (int j = 0; j < 9; j++) {
                 secondTry[i][j] = obj2.getNumber(i, j);
             }
-       }
+        }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (firstTry[i][j] != secondTry[i][j]) {
@@ -48,4 +53,16 @@ public class SudokuBoardTest {
         }
         assertTrue(flag);
     }
+
+    @Test
+    public void printTest(){
+        SudokuBoard obj = new SudokuBoard();
+        assertTrue(obj.fillBoard());
+        if(obj.fillBoard()){
+            obj.print();
+        }
+    }
+
 }
+
+
