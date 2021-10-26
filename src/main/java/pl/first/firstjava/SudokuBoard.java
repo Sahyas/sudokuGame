@@ -71,8 +71,9 @@ public class SudokuBoard {
         if (isEmpty) {
             return true;
         }
+        setNumber(0,0, rng());
+        setNumber(8,8, rng());
         for (int num = 0; num <= 9; num++) {
-            num = rng();
             if (canInsert(row, col, num)) {
                 board[row][col] = num;
                 if (fillBoard()) {
