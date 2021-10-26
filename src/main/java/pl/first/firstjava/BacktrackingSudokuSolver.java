@@ -9,22 +9,22 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
     }
 
     public boolean solve(SudokuBoard board) {
-        if (board.getNumber(0, 0) == 0) {
-            board.setNumber(0, 0, rng());
+        if (board.get(0, 0) == 0) {
+            board.set(0, 0, rng());
             int random = rng();
-            if (board.getNumber(0, 0) != random) {
-                board.setNumber(0, 5, random);
+            if (board.get(0, 0) != random) {
+                board.set(0, 5, random);
             }
         }
-        if (board.getNumber(8, 8) == 0) {
-            board.setNumber(8, 8, rng());
+        if (board.get(8, 8) == 0) {
+            board.set(8, 8, rng());
         }
         int row = 0; //to nie ma znaczenia
         int col = 0; // -||-
         boolean isEmpty = true;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (board.getNumber(i, j) == 0) { //na poczatku cala tabilca to zera
+                if (board.get(i, j) == 0) { //na poczatku cala tabilca to zera
                     row = i;            //jak znajdzie 0 to lapie wspolrzedne
                     col = j;            //rzedu i kolumny
                     isEmpty = false;    //a pole zmienia na nie puste
@@ -40,11 +40,11 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         }
         for (int num = 0; num <= 9; num++) {
             if (board.canInsert(row, col, num)) {
-                board.setNumber(row, col, num);
+                board.set(row, col, num);
                 if (solve(board)) {
                     return true;
                 } else {
-                    board.setNumber(row, col, 0);
+                    board.set(row, col, 0);
                 }
             }
         }

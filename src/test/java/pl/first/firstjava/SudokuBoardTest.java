@@ -10,8 +10,9 @@ public class SudokuBoardTest {
 
     @Test
     public void canInsertTest() {
-        SudokuBoard obj = new SudokuBoard();
-        obj.setNumber(0, 0, 5);
+        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
+        SudokuBoard obj = new SudokuBoard(backtracking);
+        obj.set(0, 0, 5);
         //check row
         assertFalse(obj.canInsert(0, 8, 5));
         assertTrue(obj.canInsert(0, 8, 6));
@@ -25,23 +26,23 @@ public class SudokuBoardTest {
 
     @Test
     public void randomNumberTest() {
-        SudokuBoard board = new SudokuBoard();
-        SudokuBoard board2 = new SudokuBoard();
-        BacktrackingSudokuSolver obj = new BacktrackingSudokuSolver();
+        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(backtracking);
+        SudokuBoard board2 = new SudokuBoard(backtracking);
         boolean flag = false;
         int[][] firstTry = new int[9][9];
         int[][] secondTry = new int[9][9];
         //check if random
-        obj.solve(board);
+        board.solveGame();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                firstTry[i][j] = board.getNumber(i, j);
+                firstTry[i][j] = board.get(i, j);
             }
         }
-        obj.solve(board2);
+        board2.solveGame();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                secondTry[i][j] = board2.getNumber(i, j);
+                secondTry[i][j] = board2.get(i, j);
             }
         }
         for (int i = 0; i < 9; i++) {
@@ -57,10 +58,10 @@ public class SudokuBoardTest {
 
     @Test
     public void printTest() {
-        BacktrackingSudokuSolver obj = new BacktrackingSudokuSolver();
-        SudokuBoard board = new SudokuBoard();
-        assertTrue(obj.solve(board));
-        if (obj.solve(board)) {
+        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard(backtracking);
+        assertTrue(board.solveGame());
+        if (board.solveGame()) {
             board.print();
         }
     }

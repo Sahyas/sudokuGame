@@ -4,23 +4,23 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SudokuBoard {
     private final int[][] board = new int[9][9];
+    private final SudokuSolver sudokuSolver;
 
-    public void solveGame() {
-        SudokuSolver obj = new SudokuSolver() {
-            @Override
-            public boolean solve(SudokuBoard board) {
-                return false;
-            }
-        };
+    public SudokuBoard(SudokuSolver sudokuSolver) {
+        this.sudokuSolver = sudokuSolver;
+    }
+
+    public boolean solveGame() {
+        return sudokuSolver.solve(this);
     }
 
     //GETTER-DO TESTOW//
-    public int getNumber(int a, int b) {
+    public int get(int a, int b) {
         return board[a][b];
     }
 
     //SETTER-DO TESTOW//
-    public void setNumber(int a, int b, int number) {
+    public void set(int a, int b, int number) {
         board[a][b] = number;
     }
 
