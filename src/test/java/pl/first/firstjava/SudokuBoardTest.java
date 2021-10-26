@@ -25,22 +25,23 @@ public class SudokuBoardTest {
 
     @Test
     public void randomNumberTest() {
-        SudokuBoard obj = new SudokuBoard();
-        SudokuBoard obj2 = new SudokuBoard();
+        SudokuBoard board = new SudokuBoard();
+        SudokuBoard board2 = new SudokuBoard();
+        BacktrackingSudokuSolver obj = new BacktrackingSudokuSolver();
         boolean flag = false;
         int[][] firstTry = new int[9][9];
         int[][] secondTry = new int[9][9];
         //check if random
-        obj.fillBoard();
+        obj.solve(board);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                firstTry[i][j] = obj.getNumber(i, j);
+                firstTry[i][j] = board.getNumber(i, j);
             }
         }
-        obj2.fillBoard();
+        obj.solve(board2);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                secondTry[i][j] = obj2.getNumber(i, j);
+                secondTry[i][j] = board2.getNumber(i, j);
             }
         }
         for (int i = 0; i < 9; i++) {
@@ -55,11 +56,12 @@ public class SudokuBoardTest {
     }
 
     @Test
-    public void printTest(){
-        SudokuBoard obj = new SudokuBoard();
-        assertTrue(obj.fillBoard());
-        if(obj.fillBoard()){
-            obj.print();
+    public void printTest() {
+        BacktrackingSudokuSolver obj = new BacktrackingSudokuSolver();
+        SudokuBoard board = new SudokuBoard();
+        assertTrue(obj.solve(board));
+        if (obj.solve(board)) {
+            board.print();
         }
     }
 

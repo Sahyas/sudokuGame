@@ -5,9 +5,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SudokuBoard {
     private final int[][] board = new int[9][9];
 
-    //GENERATOR LICZB LOSOWYCH//
-    public int rng() {
-        return ThreadLocalRandom.current().nextInt(1, 10);
+    public void solveGame() {
+        SudokuSolver obj = new SudokuSolver() {
+            @Override
+            public boolean solve(SudokuBoard board) {
+                return false;
+            }
+        };
     }
 
     //GETTER-DO TESTOW//
@@ -48,42 +52,6 @@ public class SudokuBoard {
             }
         }
         return true;
-    }
-
-    //WYPELNIA TABLICE LOSOWYMI LICZBAMI//
-    public boolean fillBoard() {
-        int row = 0; //to nie ma znaczenia
-        int col = 0; // -||-
-        boolean isEmpty = true;
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (board[i][j] == 0) { //na poczatku cala tabilca to zera
-                    row = i;            //jak znajdzie 0 to lapie wspolrzedne
-                    col = j;            //rzedu i kolumny
-                    isEmpty = false;    //a pole zmienia na nie puste
-                    break;
-                }
-            }
-            if (!isEmpty) {
-                break;
-            }
-        }
-        if (isEmpty) {
-            return true;
-        }
-        setNumber(0,0, rng());
-        setNumber(8,8, rng());
-        for (int num = 0; num <= 9; num++) {
-            if (canInsert(row, col, num)) {
-                board[row][col] = num;
-                if (fillBoard()) {
-                    return true;
-                } else {
-                    board[row][col] = 0;
-                }
-            }
-        }
-        return false;
     }
 
     //WYSWIETLA TABLICE//
