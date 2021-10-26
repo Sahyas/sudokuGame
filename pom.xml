@@ -9,10 +9,20 @@
 
     <name>00_${project.artifactId}-${project.version}</name>
 
-    <url>http://maven.apache.org</url>
+    <url>https://maven.apache.org</url>
     
     <reporting>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.15.0</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -49,7 +59,7 @@
             </plugin>
         </plugins>
     </reporting>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -141,7 +151,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.7.2</version>
+            <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -152,4 +162,20 @@
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
+
+    <developers>
+        <developer>
+            <id>236707</id>
+            <name>Szymon Zakrzewski</name>
+            <email>236707@edu.p.lodz.pl</email>
+        </developer>
+        <developer>
+            <id>236649</id>
+            <name>Piotr Skonieczny</name>
+            <email>236649@edu.p.lodz.pl</email>
+        </developer>
+    </developers>
+
+    <description>Projekt grupy laboratoryjnej JM_SR_1345_05</description>
+
 </project>
