@@ -74,12 +74,7 @@ public class SudokuBoardTest {
         //wstawiona liczba spoza zakresu [0,9]
         board.set(0, 0, 10);
         assertEquals(board.get(0, 0), 5);
-        //wybrana nieodpowiednia kolumna
-        board.set(10, 1, 5);
-        //wybrany nieodpowiedni rząd
-        board.set(1, 10, 5);
     }
-
 }
 
 

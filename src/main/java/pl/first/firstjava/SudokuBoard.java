@@ -21,7 +21,7 @@ public class SudokuBoard {
 
     //SETTER-DO TESTOW//
     public void set(int a, int b, int number) {
-        if ((number >= 0 && number < 10) && (a >= 0 && a < 10) && (b >= 0 && b < 10)) {
+        if (number >= 0 && number < 10) {
             board[a][b] = number;
         }
     }
