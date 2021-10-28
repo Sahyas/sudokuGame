@@ -4,11 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class BacktrackingSudokuSolver implements SudokuSolver {
 
-    public int rng() {
-        return ThreadLocalRandom.current().nextInt(1, 10);
-    }
-
-    public boolean solve(SudokuBoard board) {
+    public void randomBoard(SudokuBoard board) {
         if (board.get(0, 0) == 0) {
             board.set(0, 0, rng());
             int random = rng();
@@ -19,8 +15,16 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         if (board.get(8, 8) == 0) {
             board.set(8, 8, rng());
         }
-        int row = 0; //to nie ma znaczenia
-        int col = 0; // -||-
+    }
+
+    public int rng() {
+        return ThreadLocalRandom.current().nextInt(1, 10);
+    }
+
+    public boolean solve(SudokuBoard board) {
+        randomBoard(board);
+        int row = 0;
+        int col = 0;
         boolean isEmpty = true;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {

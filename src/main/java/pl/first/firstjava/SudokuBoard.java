@@ -4,7 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SudokuBoard {
     private final int[][] board = new int[9][9];
-    private final SudokuSolver sudokuSolver;
+    private SudokuSolver sudokuSolver;
 
     public SudokuBoard(SudokuSolver sudokuSolver) {
         this.sudokuSolver = sudokuSolver;
@@ -21,7 +21,9 @@ public class SudokuBoard {
 
     //SETTER-DO TESTOW//
     public void set(int a, int b, int number) {
-        board[a][b] = number;
+        if ((number >= 0 && number < 10) && (a >= 0 && a < 10) && (b >= 0 && b < 10)) {
+            board[a][b] = number;
+        }
     }
 
     //CZY MOGE WSTAWIC LICZBE//
