@@ -1,7 +1,5 @@
 package pl.first.firstjava;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class SudokuBoard {
     private final int[][] board = new int[9][9];
     private SudokuSolver sudokuSolver;
@@ -66,4 +64,25 @@ public class SudokuBoard {
             System.out.print("\n");
         }
     }
+/*
+    public SudokuBox getBox(int x, int y){
+        int[] box = new int[9];
+
+    }
+
+    public SudokuBox getRow(int y){
+        int[] row = new int[9];
+        for(int i=0; i<board.length; i++){
+            row[i] = board[i][y];
+        }
+    }
+
+    public SudokuColumn getColumn(int x){
+        int[] column = new int[9];
+        for(int i=0; i<board.length; i++){
+            column[i] = board[x][i];
+        }
+    }
+
+ */
 }
