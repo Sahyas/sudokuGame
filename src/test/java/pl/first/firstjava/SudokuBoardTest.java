@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class SudokuBoardTest {
-    public SudokuBoardTest() {
-    }
 
     @Test
     public void canInsertTest() {
@@ -14,14 +12,14 @@ public class SudokuBoardTest {
         SudokuBoard obj = new SudokuBoard(backtracking);
         obj.set(0, 0, 5);
         //check row
-        assertFalse(obj.canInsert(0, 8, 5));
-        assertTrue(obj.canInsert(0, 8, 6));
+        assertFalse(backtracking.canInsert(0, 8, 5, obj));
+        assertTrue(backtracking.canInsert(0, 8, 6, obj));
         //check column
-        assertFalse(obj.canInsert(7, 0, 5));
-        assertTrue(obj.canInsert(7, 0, 6));
+        assertFalse(backtracking.canInsert(7, 0, 5, obj));
+        assertTrue(backtracking.canInsert(7, 0, 6, obj));
         //check box
-        assertFalse(obj.canInsert(2, 2, 5));
-        assertTrue(obj.canInsert(2, 2, 6));
+        assertFalse(backtracking.canInsert(2, 2, 5, obj));
+        assertTrue(backtracking.canInsert(2, 2, 6, obj));
     }
 
     @Test
@@ -33,7 +31,6 @@ public class SudokuBoardTest {
         int[][] firstTry = new int[9][9];
         int[][] secondTry = new int[9][9];
         //check if random
-        board.solveGame();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 firstTry[i][j] = board.get(i, j);
@@ -60,10 +57,12 @@ public class SudokuBoardTest {
     public void printTest() {
         BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(backtracking);
-        assertTrue(board.solveGame());
+        assertFalse(board.checkBoard());
+        board.solveGame();
         if (board.solveGame()) {
             board.print();
         }
+        assertTrue(board.checkBoard());
     }
 
     @Test
@@ -71,10 +70,15 @@ public class SudokuBoardTest {
         BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(backtracking);
         board.set(0, 0, 5);
+        assertEquals(board.get(0, 0), 5);
         //wstawiona liczba spoza zakresu [0,9]
         board.set(0, 0, 10);
         assertEquals(board.get(0, 0), 5);
+        board.set(0, 0, 6);
+        assertEquals(board.get(0, 0), 6);
+        board.set(0, 0, -1);
+        assertEquals(board.get(0, 0), 6);
     }
-}
 
+}
 
