@@ -176,6 +176,13 @@
         </developer>
     </developers>
 
+    <licenses>
+        <license>
+            <name>The 3-Clause BSD License</name>
+            <url>License.txt</url>
+        </license>
+    </licenses>
+
     <description>Projekt grupy laboratoryjnej JM_SR_1345_05</description>
 
 </project>
