@@ -2,6 +2,7 @@ package pl.first.firstjava;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class SudokuBoard {
@@ -21,6 +22,7 @@ public class SudokuBoard {
             }
         }
     }
+
 
     public boolean solveGame() {
         return sudokuSolver.solve(this);
@@ -42,7 +44,13 @@ public class SudokuBoard {
     public boolean checkBoard() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (!getRow(i).verify() || !getColumn(j).verify() || !getBox(i, j).verify()) {
+                if (!getRow(i).verify()) {
+                    return false;
+                }
+                if (!getColumn(j).verify()) {
+                    return false;
+                }
+                if (!getBox(i, j).verify()) {
                     return false;
                 }
             }
@@ -90,5 +98,26 @@ public class SudokuBoard {
         }
 
         return new SudokuColumn(elements);
+    }
+
+    @Override
+    public String toString() {
+        return "SudokuBoard{" +
+                "board=" + board +
+                ", sudokuSolver=" + sudokuSolver +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SudokuBoard that = (SudokuBoard) o;
+        return Objects.equals(board, that.board) && Objects.equals(sudokuSolver, that.sudokuSolver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(board, sudokuSolver);
     }
 }

@@ -7,7 +7,6 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
     public void randomBoard(SudokuBoard board) {
         if (board.get(0, 0) == 0) {
             board.set(0, 0, rng());
-            int random = rng();
         }
         if (board.get(8, 8) == 0) {
             board.set(8, 8, rng());

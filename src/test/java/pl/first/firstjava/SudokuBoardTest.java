@@ -54,14 +54,47 @@ public class SudokuBoardTest {
     }
 
     @Test
-    public void printTest() {
+    public void checkBoardTest() {
         BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(backtracking);
+        board.solveGame();
+
+        assertTrue(board.checkBoard());
+        board.set(1, 1, 1);
+        board.set(1, 2, 1);
         assertFalse(board.checkBoard());
+        BacktrackingSudokuSolver test22 = new BacktrackingSudokuSolver();
+        SudokuBoard test2 = new SudokuBoard(test22);
+        test2.solveGame();
+        test2.set(0, 0, 1);
+        test2.set(0, 1, 2);
+        test2.set(0, 2, 3);
+        test2.set(0, 3, 4);
+        test2.set(0, 4, 5);
+        test2.set(0, 5, 6);
+        test2.set(0, 6, 7);
+        test2.set(0, 7, 8);
+        test2.set(0, 8, 9);
+        test2.set(1, 0, 1);
+        test2.set(1, 1, 1);
+        assertFalse(test2.checkBoard());
+        BacktrackingSudokuSolver test33 = new BacktrackingSudokuSolver();
+        SudokuBoard test3 = new SudokuBoard(test33);
+        test3.set(0, 0, 1);
+        test3.set(0, 1, 2);
+        test3.set(0, 2, 3);
+        test3.set(0, 3, 4);
+        test3.set(0, 4, 5);
+        test3.set(0, 5, 6);
+        test3.set(0, 6, 7);
+        test3.set(0, 7, 8);
+        test3.set(0, 8, 9);
+        test3.set(1, 0, 3);
+        test3.set(1, 1, 1);
+        assertFalse(test3.checkBoard());
         if (board.solveGame()) {
             board.print();
         }
-        assertTrue(board.checkBoard());
     }
 
     @Test
@@ -77,41 +110,5 @@ public class SudokuBoardTest {
         assertEquals(board.get(0, 0), 6);
         board.set(0, 0, -1);
         assertEquals(board.get(0, 0), 6);
-    }
-
-    @Test
-    public void checkBoardTest() {
-        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
-        SudokuBoard board = new SudokuBoard(backtracking);
-        assertFalse(board.checkBoard());
-        for (int i = 0; i < SudokuBoard.SIZE; i++) {
-            board.set(0, i, i + 1);
-        }
-        assertFalse(board.checkBoard());
-        for (int i = 0; i < SudokuBoard.SIZE; i++) {
-            board.set(0, i, 0);
-        }
-        for (int j = 0; j < SudokuBoard.SIZE; j++) {
-            board.set(j, 0, j + 1);
-        }
-        assertFalse(board.checkBoard());
-        for (int j = 0; j < SudokuBoard.SIZE; j++) {
-            board.set(j, 0, 0);
-        }
-        int num = 1;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board.set(i, j, num);
-                num++;
-            }
-        }
-        assertFalse(board.checkBoard());
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board.set(i, j, 0);
-            }
-        }
-        board.solveGame();
-        assertTrue(board.checkBoard());
     }
 }
