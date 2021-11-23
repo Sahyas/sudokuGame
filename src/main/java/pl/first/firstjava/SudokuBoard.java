@@ -1,13 +1,14 @@
 package pl.first.firstjava;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 
 public class SudokuBoard {
     private List<List<SudokuField>> board;
-    private SudokuSolver sudokuSolver;
+    private final SudokuSolver sudokuSolver;
     public static final int SIZE = 9;
 
     public SudokuBoard(SudokuSolver sudokuSolver1) {
@@ -101,23 +102,29 @@ public class SudokuBoard {
     }
 
     @Override
-    public String toString() {
-        return "SudokuBoard{" +
-                "board=" + board +
-                ", sudokuSolver=" + sudokuSolver +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SudokuBoard that = (SudokuBoard) o;
-        return Objects.equals(board, that.board) && Objects.equals(sudokuSolver, that.sudokuSolver);
+        return Objects.equal(board, that.board) && Objects.equal(sudokuSolver, that.sudokuSolver);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(board, sudokuSolver);
+        return Objects.hashCode(board, sudokuSolver);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("board", board)
+                .add("sudokuSolver", sudokuSolver)
+                .toString();
     }
 }
+
+

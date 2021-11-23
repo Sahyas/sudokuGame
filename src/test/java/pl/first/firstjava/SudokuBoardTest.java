@@ -2,13 +2,24 @@ package pl.first.firstjava;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
+import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SudokuBoardTest {
+    private BacktrackingSudokuSolver backtracking;
+
+    @BeforeEach
+    public void setUp() {
+        backtracking = new BacktrackingSudokuSolver();
+    }
 
     @Test
     public void canInsertTest() {
-        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
         SudokuBoard obj = new SudokuBoard(backtracking);
         obj.set(0, 0, 5);
         //check row
@@ -24,7 +35,6 @@ public class SudokuBoardTest {
 
     @Test
     public void randomNumberTest() {
-        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(backtracking);
         SudokuBoard board2 = new SudokuBoard(backtracking);
         boolean flag = false;
@@ -55,16 +65,14 @@ public class SudokuBoardTest {
 
     @Test
     public void checkBoardTest() {
-        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(backtracking);
+        assertFalse(board.checkBoard());
         board.solveGame();
-
         assertTrue(board.checkBoard());
         board.set(1, 1, 1);
         board.set(1, 2, 1);
         assertFalse(board.checkBoard());
-        BacktrackingSudokuSolver test22 = new BacktrackingSudokuSolver();
-        SudokuBoard test2 = new SudokuBoard(test22);
+        SudokuBoard test2 = new SudokuBoard(backtracking);
         test2.solveGame();
         test2.set(0, 0, 1);
         test2.set(0, 1, 2);
@@ -78,8 +86,7 @@ public class SudokuBoardTest {
         test2.set(1, 0, 1);
         test2.set(1, 1, 1);
         assertFalse(test2.checkBoard());
-        BacktrackingSudokuSolver test33 = new BacktrackingSudokuSolver();
-        SudokuBoard test3 = new SudokuBoard(test33);
+        SudokuBoard test3 = new SudokuBoard(backtracking);
         test3.set(0, 0, 1);
         test3.set(0, 1, 2);
         test3.set(0, 2, 3);
@@ -92,6 +99,7 @@ public class SudokuBoardTest {
         test3.set(1, 0, 3);
         test3.set(1, 1, 1);
         assertFalse(test3.checkBoard());
+        SudokuBoard test4 = new SudokuBoard(backtracking);
         if (board.solveGame()) {
             board.print();
         }
@@ -99,7 +107,6 @@ public class SudokuBoardTest {
 
     @Test
     public void setterTest() {
-        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(backtracking);
         board.set(0, 0, 5);
         assertEquals(board.get(0, 0), 5);
@@ -111,4 +118,28 @@ public class SudokuBoardTest {
         board.set(0, 0, -1);
         assertEquals(board.get(0, 0), 6);
     }
+
+    @Test
+    public void hashCodeTest() {
+        EqualsVerifier.simple().forClass(SudokuBoard.class).verify();
+    }
+
+    @Test
+    public void equalsTest() {
+        SudokuBoard board = new SudokuBoard(backtracking);
+        SudokuBoard board2 = board;
+        assertTrue(board.equals(board2));
+        assertEquals(board.hashCode(), board2.hashCode());
+    }
+
+
+    @Test
+    public void testToString() {
+        ToStringVerifier.forClass(SudokuBoard.class)
+                .withClassName(NameStyle.SIMPLE_NAME)
+                .withIgnoredFields("board", "sudokuSolver")
+                .verify();
+    }
 }
+
+
