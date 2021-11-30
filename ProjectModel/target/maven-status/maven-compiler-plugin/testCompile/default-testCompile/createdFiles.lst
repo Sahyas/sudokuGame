@@ -1,0 +1,6 @@
+FileSudokuBoardDaoTest.class
+SudokuFieldTest.class
+SudokuBoardDaoFactoryTest.class
+SudokuBoardTest.class
+SudokuContainerTest.class
+BacktrackingSudokuSolverTest.class
