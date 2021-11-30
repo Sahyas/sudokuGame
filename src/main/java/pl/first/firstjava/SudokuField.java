@@ -5,13 +5,18 @@ import com.google.common.base.Objects;
 
 public class SudokuField {
     private int value;
+    private SudokuRow[] row = new SudokuRow[9];
+    private SudokuColumn[] column = new SudokuColumn[9];
+    private SudokuBox[] box = new SudokuBox[9];
 
     public SudokuField() {
 
     }
 
     public SudokuField(int value) {
-        this.value = value;
+        if(value>=1 && value <=9){
+            this.value = value;
+        }
     }
 
     public int getFieldValue() {
