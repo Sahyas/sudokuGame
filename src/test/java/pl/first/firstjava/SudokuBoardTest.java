@@ -128,6 +128,8 @@ public class SudokuBoardTest {
     public void equalsTest() {
         SudokuBoard board = new SudokuBoard(backtracking);
         SudokuBoard board2 = board;
+        SudokuBoard board3 = null;
+        assertEquals(board.equals(board3), false);
         assertTrue(board.equals(board2));
         assertEquals(board.hashCode(), board2.hashCode());
     }
