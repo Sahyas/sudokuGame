@@ -1,6 +1,6 @@
 import java.util.concurrent.ThreadLocalRandom;
 
-public class BacktrackingSudokuSolver implements SudokuSolver {
+public class  BacktrackingSudokuSolver implements SudokuSolver {
 
     public void randomBoard(SudokuBoard board) {
         if (board.get(0, 0) == 0) {
