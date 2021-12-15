@@ -1,12 +1,13 @@
 SudokuField.class
 FileSudokuBoardDao.class
-SudokuRow.class
-SudokuSolver.class
+Difficulty.class
 SudokuColumn.class
-BacktrackingSudokuSolver.class
 SudokuBox.class
 Dao.class
+SudokuContainer.class
+SudokuRow.class
+SudokuSolver.class
+BacktrackingSudokuSolver.class
 BadContainerSizeException.class
 SudokuBoardDaoFactory.class
 SudokuBoard.class
-SudokuContainer.class

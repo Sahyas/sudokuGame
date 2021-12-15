@@ -1,15 +1,26 @@
 import com.jparams.verifier.tostring.NameStyle;
 import com.jparams.verifier.tostring.ToStringVerifier;
 import nl.jqno.equalsverifier.EqualsVerifier;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SudokuContainerTest {
+    private SudokuRow makeList() {
+        return new SudokuRow(Arrays.asList(
+                new SudokuField(1),
+                new SudokuField(2),
+                new SudokuField(3),
+                new SudokuField(4),
+                new SudokuField(5),
+                new SudokuField(6),
+                new SudokuField(7),
+                new SudokuField(8),
+                new SudokuField(9)));
+    }
+
     @Test
     public void verifyValidTest() {
         SudokuRow testSudokuRow = new SudokuRow(Arrays.asList(
@@ -88,4 +99,6 @@ class SudokuContainerTest {
         assertEquals(con1.hashCode(),con3.hashCode());
 
     }
+
+
 }

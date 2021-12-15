@@ -3,9 +3,10 @@ import com.google.common.base.Objects;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 
-public class SudokuBoard implements Serializable {
+public class SudokuBoard implements Serializable, Cloneable {
     private List<List<SudokuField>> board;
     private final SudokuSolver sudokuSolver;
     public static final int SIZE = 9;
@@ -23,6 +24,9 @@ public class SudokuBoard implements Serializable {
         }
     }
 
+    public int rng() {
+        return ThreadLocalRandom.current().nextInt(0, 9);
+    }
 
     public boolean solveGame() {
         return sudokuSolver.solve(this);
@@ -100,6 +104,64 @@ public class SudokuBoard implements Serializable {
         return new SudokuColumn(elements);
     }
 
+    public int[][] getBoard() {
+        int[][] tab = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                tab[i][j] = board.get(i).get(j).getFieldValue();
+            }
+        }
+        return tab;
+    }
+
+    public void clearBoard() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                set(i, j, 0);
+            }
+        }
+    }
+
+    public void changeBoard(Difficulty difficulty) {
+        if (difficulty.equals(Difficulty.Easy)) {
+            int i = 25;
+            while (i != 0) {
+                int a;
+                int b;
+                a = rng();
+                b = rng();
+                if (get(a, b) != 0) {
+                    set(a, b, 0);
+                    i--;
+                }
+            }
+        } else if (difficulty.equals(Difficulty.Medium)) {
+            int i = 35;
+            while (i != 0) {
+                int a;
+                int b;
+                a = rng();
+                b = rng();
+                if (get(a, b) != 0) {
+                    set(a, b, 0);
+                    i--;
+                }
+            }
+        } else if (difficulty.equals(Difficulty.Hard)) {
+            int i = 45;
+            while (i != 0) {
+                int a;
+                int b;
+                a = rng();
+                b = rng();
+                if (get(a, b) != 0) {
+                    set(a, b, 0);
+                    i--;
+                }
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -124,6 +186,20 @@ public class SudokuBoard implements Serializable {
                 .add("sudokuSolver", sudokuSolver)
                 .toString();
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
+        SudokuBoard sudokuBoard = new SudokuBoard(backtracking);
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                sudokuBoard.set(i, j, get(i, j));
+            }
+        }
+
+        return sudokuBoard;
+    }
+
 }
 
 

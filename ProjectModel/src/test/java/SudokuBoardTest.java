@@ -148,6 +148,86 @@ public class SudokuBoardTest {
                 .withIgnoredFields("board", "sudokuSolver")
                 .verify();
     }
+
+    @Test
+    public void cloneTest() throws CloneNotSupportedException {
+        SudokuBoard board1 = new SudokuBoard(backtracking);
+        board1.solveGame();
+        SudokuBoard board2 = (SudokuBoard) board1.clone();
+
+        assertTrue(board1.equals(board2)
+                && board2.equals(board1));
+    }
+    @Test
+    public void getBoardTest() {
+        SudokuBoard testSudokuBoard = new SudokuBoard(backtracking);
+        int[][] testTab = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                assertEquals(testTab[i][j], testSudokuBoard.getBoard()[i][j]);
+            }
+        }
+    }
+
+    @Test
+    public void clearBoardTest() {
+        SudokuBoard testSudokuBoard = new SudokuBoard(backtracking);
+        testSudokuBoard.solveGame();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                assertNotEquals(0, testSudokuBoard.get(i, j));
+            }
+        }
+        testSudokuBoard.clearBoard();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                assertEquals(0, testSudokuBoard.get(i, j));
+            }
+        }
+    }
+
+    @Test
+    public void changeBoardTest() {
+        SudokuBoard testSudokuBoard = new SudokuBoard(backtracking);
+        Difficulty easyDifficulty = Difficulty.Easy;
+        Difficulty mediumDifficulty = Difficulty.Medium;
+        Difficulty hardDifficulty = Difficulty.Hard;
+        testSudokuBoard.solveGame();
+        testSudokuBoard.changeBoard(easyDifficulty);
+        int blanks = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (testSudokuBoard.get(i, j) == 0) {
+                    blanks++;
+                }
+            }
+        }
+        assertEquals(25, blanks);
+        testSudokuBoard = new SudokuBoard(backtracking);
+        testSudokuBoard.solveGame();
+        testSudokuBoard.changeBoard(mediumDifficulty);
+        blanks = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (testSudokuBoard.get(i, j) == 0) {
+                    blanks++;
+                }
+            }
+        }
+        assertEquals(35, blanks);
+        testSudokuBoard = new SudokuBoard(backtracking);
+        testSudokuBoard.solveGame();
+        testSudokuBoard.changeBoard(hardDifficulty);
+        blanks = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (testSudokuBoard.get(i, j) == 0) {
+                    blanks++;
+                }
+            }
+        }
+        assertEquals(45, blanks);
+    }
 }
 
 

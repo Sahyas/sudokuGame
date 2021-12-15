@@ -1,3 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.38.0" timestamp="2021-11-30T23:52:19.049">
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.38.0" timestamp="2021-12-15T03:00:14.669">
+<file name="C:\Users\Szymon\Desktop\sudoku\jm_sr_1345_05\View\src\main\java\MenuController.java">
+<violation beginline="49" endline="49" begincolumn="9" endcolumn="22" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="MenuController" method="initialize" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
+Unnecessary use of fully qualified name 'java.awt.Color' due to existing import 'java.awt.Color'
+</violation>
+<violation beginline="75" endline="75" begincolumn="9" endcolumn="22" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="MenuController" method="drawOnCanvas" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
+Unnecessary use of fully qualified name 'java.awt.Color' due to existing import 'java.awt.Color'
+</violation>
+<violation beginline="93" endline="93" begincolumn="32" endcolumn="40" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="awtColor2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'awtColor2'.
+</violation>
+<violation beginline="93" endline="93" begincolumn="17" endcolumn="30" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="MenuController" method="drawOnCanvas" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
+Unnecessary use of fully qualified name 'java.awt.Color' due to existing import 'java.awt.Color'
+</violation>
+<violation beginline="94" endline="94" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="r2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'r2'.
+</violation>
+<violation beginline="95" endline="95" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="g2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'g2'.
+</violation>
+<violation beginline="96" endline="96" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="b2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'b2'.
+</violation>
+<violation beginline="97" endline="97" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="a2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'a2'.
+</violation>
+<violation beginline="98" endline="98" begincolumn="24" endcolumn="31" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="opacity2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'opacity2'.
+</violation>
+</file>
 </pmd>

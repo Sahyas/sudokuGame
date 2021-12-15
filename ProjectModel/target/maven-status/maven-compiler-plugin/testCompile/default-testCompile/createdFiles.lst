@@ -1,6 +1,9 @@
-FileSudokuBoardDaoTest.class
+SudokuBoxTest.class
 SudokuFieldTest.class
 SudokuBoardDaoFactoryTest.class
+SudokuColumnTest.class
+SudokuRowTest.class
+FileSudokuBoardDaoTest.class
 SudokuBoardTest.class
 SudokuContainerTest.class
 BacktrackingSudokuSolverTest.class

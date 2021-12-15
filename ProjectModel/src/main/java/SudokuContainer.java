@@ -1,8 +1,10 @@
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
-public abstract class SudokuContainer {
+public abstract class SudokuContainer implements Serializable, Cloneable {
     public static final int size = 9;
     private List<SudokuField> elements;
 
@@ -23,6 +25,10 @@ public abstract class SudokuContainer {
             }
         }
         return true;
+    }
+
+    public List<SudokuField> getSudokuFieldList() {
+        return Collections.unmodifiableList(elements);
     }
 
     @Override
@@ -48,4 +54,6 @@ public abstract class SudokuContainer {
                 .add("elements", elements)
                 .toString();
     }
+
+
 }
