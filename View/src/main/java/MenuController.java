@@ -1,13 +1,17 @@
 import java.awt.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import org.checkerframework.checker.units.qual.A;
 
 public class MenuController implements Initializable {
 
@@ -39,10 +43,13 @@ public class MenuController implements Initializable {
     Button buttonHard;
     @FXML
     Button buttonNewGame;
+    @FXML
+    Button exitButton;
     SudokuBoard gameboard;
     SudokuSolver solver;
     Difficulty difficulty;
-    boolean flag = true;
+    int playerSelectedRow;
+    int playerSelectedCol;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -70,26 +77,40 @@ public class MenuController implements Initializable {
     }
 
     public void drawOnCanvas(GraphicsContext context) {
-        context.clearRect(0, 0, 450, 450);
-        canvas.setStyle("-fx-background-color: white;");
-        java.awt.Color awtColor = Color.RED;
+        java.awt.Color awtColor = Color.WHITE;
         int r = awtColor.getRed();
         int g = awtColor.getGreen();
         int b = awtColor.getBlue();
         int a = awtColor.getAlpha();
         double opacity = a / 255.0;
         javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.rgb(r, g, b, opacity);
+        context.clearRect(0, 0, 450, 450);
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                int positionY = row * 50 + 2;
+                int positionX = col * 50 + 2;
+                int width = 46;
+                context.setFill(fxColor);
+                context.fillRoundRect(positionX, positionY, width, width, 10, 10);
+            }
+        }
+        canvas.setStyle("-fx-background-color: white;");
+        awtColor = Color.RED;
+        r = awtColor.getRed();
+        g = awtColor.getGreen();
+        b = awtColor.getBlue();
+        a = awtColor.getAlpha();
+        opacity = a / 255.0;
+        fxColor = javafx.scene.paint.Color.rgb(r, g, b, opacity);
         context.setStroke(fxColor);
         context.setLineWidth(5);
         context.strokeRoundRect(playerSelectedCol * 50 + 2,
                 playerSelectedRow * 50 + 2, 46, 46, 10, 10);
         int[][] initial = gameboard.getBoard();
-        // for loop is the same as before
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 int positionY = row * 50 + 30;
                 int positionX = col * 50 + 20;
-
                 java.awt.Color awtColor2 = Color.BLACK;
                 int r2 = awtColor.getRed();
                 int g2 = awtColor.getGreen();
@@ -105,9 +126,6 @@ public class MenuController implements Initializable {
         }
     }
 
-    int playerSelectedRow;
-    int playerSelectedCol;
-
     public void canvasMouseClicked() {
         canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -119,6 +137,18 @@ public class MenuController implements Initializable {
                 drawOnCanvas(canvas.getGraphicsContext2D());
             }
         });
+    }
+
+    public void noDifficultyChosen() {
+        Alert errorNoDifficulty = new Alert(Alert.AlertType.ERROR);
+        errorNoDifficulty.setHeaderText("Error");
+        errorNoDifficulty.setContentText("You have to choose difficulty level");
+        errorNoDifficulty.showAndWait();
+    }
+
+    public void exitGame() {
+        Platform.exit();
+        System.exit(0);
     }
 
     public void easyClicked() {
@@ -134,10 +164,14 @@ public class MenuController implements Initializable {
     }
 
     public void newGameClicked() {
-        gameboard.clearBoard();
-        drawOnCanvas(canvas.getGraphicsContext2D());
-        gameboard.solveGame();
-        gameboard.changeBoard(difficulty);
-        drawOnCanvas(canvas.getGraphicsContext2D());
+        if (difficulty != null) {
+            gameboard.clearBoard();
+            drawOnCanvas(canvas.getGraphicsContext2D());
+            gameboard.solveGame();
+            gameboard.changeBoard(difficulty);
+            drawOnCanvas(canvas.getGraphicsContext2D());
+        } else {
+            noDifficultyChosen();
+        }
     }
 }

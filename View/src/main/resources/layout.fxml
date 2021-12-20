@@ -20,5 +20,6 @@
       <Button fx:id="buttonMedium" layoutX="559.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#mediumClicked" prefHeight="50.0" prefWidth="68.0" text="Medium" />
       <Button fx:id="buttonHard" layoutX="629.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#hardClicked" prefHeight="50.0" prefWidth="66.0" text="Hard" />
       <Button fx:id="buttonNewGame" layoutX="491.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#newGameClicked" prefHeight="70.0" prefWidth="150.0" text="New Game" />
+      <Button fx:id="exitButton" layoutX="491.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="42.0" prefWidth="150.0" text="Exit" />
    </children>
 </Pane>
