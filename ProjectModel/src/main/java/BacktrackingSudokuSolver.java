@@ -1,19 +1,18 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BacktrackingSudokuSolver implements SudokuSolver {
 
     public void randomBoard(SudokuBoard board) {
-        int x;
-        for (int i = 0; i < 9; i++) {
-            x = rng();
-            if (board.get(i, 0) == 0 && canInsert(i, 0, x, board)) {
-                board.set(i, 0, x);
-            }
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i=1; i<10; i++) {
+            list.add(i);
         }
-        for (int i = 0; i < 9; i++) {
-            x = rng();
-            if (board.get(0, i) == 0 && canInsert(0, i, x, board)) {
-                board.set(0, i, x);
+        Collections.shuffle(list);
+        for(int i = 0; i < 5; i++) {
+            if(board.get(0,i) == 0 && canInsert(0,i,list.get(i), board)) {
+                board.set(0, i, list.get(i));
             }
         }
 

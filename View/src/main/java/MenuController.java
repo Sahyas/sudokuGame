@@ -1,177 +1,104 @@
 import java.awt.Color;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.checkerframework.checker.units.qual.A;
 
 public class MenuController implements Initializable {
-
+    private final Stage thisStage;
+    private int levelFlag;
+    public Button startButton;
+    private FileSudokuBoardDao fileSudokuBoardDao;
+    private FileChooser fileChooser;
+    private static SudokuBoard sudokuBoardFromFile;
+    private static String level;
+    private String language;
+    private ResourceBundle bundle = ResourceBundle.getBundle("Language");
     @FXML
-    Button buttonOne;
+    private ComboBox comboBoxSystemLang;
     @FXML
-    Button buttonTwo;
+    private ComboBox comboBoxSystemDifficult;
     @FXML
-    Button buttonThree;
+    Button easyButton;
     @FXML
-    Button buttonFour;
+    Button mediumButton;
     @FXML
-    Button buttonFive;
-    @FXML
-    Button buttonSix;
-    @FXML
-    Button buttonSeven;
-    @FXML
-    Button buttonEight;
-    @FXML
-    Button buttonNine;
-    @FXML
-    Canvas canvas;
-    @FXML
-    Button buttonEasy;
-    @FXML
-    Button buttonMedium;
-    @FXML
-    Button buttonHard;
-    @FXML
-    Button buttonNewGame;
+    Button hardButton;
     @FXML
     Button exitButton;
-    SudokuBoard gameboard;
-    SudokuSolver solver;
-    Difficulty difficulty;
-    int playerSelectedRow;
-    int playerSelectedCol;
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        java.awt.Color awtColor = Color.WHITE;
-        int r = awtColor.getRed();
-        int g = awtColor.getGreen();
-        int b = awtColor.getBlue();
-        int a = awtColor.getAlpha();
-        double opacity = a / 255.0;
-        javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.rgb(r, g, b, opacity);
-        solver = new BacktrackingSudokuSolver();
-        gameboard = new SudokuBoard(solver);
-        GraphicsContext context = canvas.getGraphicsContext2D();
-        drawOnCanvas(context);
-        context.clearRect(0, 0, 450, 450);
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-                int positionY = row * 50 + 2;
-                int positionX = col * 50 + 2;
-                int width = 46;
-                context.setFill(fxColor);
-                context.fillRoundRect(positionX, positionY, width, width, 10, 10);
-            }
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        easyButton.setOnAction(actionEvent -> openBoard(1));
+        mediumButton.setOnAction(actionEvent -> openBoard(2));
+        hardButton.setOnAction(actionEvent -> openBoard(3));
+    }
+
+
+    public MenuController() {
+        thisStage = new Stage();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
+
+            // Set this class as the controller
+            loader.setController(this);
+
+            // Load the scene
+            thisStage.setScene(new Scene(loader.load()));
+
+            // Setup the window/stage
+            thisStage.setTitle("Menu Glowne");
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void drawOnCanvas(GraphicsContext context) {
-        java.awt.Color awtColor = Color.WHITE;
-        int r = awtColor.getRed();
-        int g = awtColor.getGreen();
-        int b = awtColor.getBlue();
-        int a = awtColor.getAlpha();
-        double opacity = a / 255.0;
-        javafx.scene.paint.Color fxColor = javafx.scene.paint.Color.rgb(r, g, b, opacity);
-        context.clearRect(0, 0, 450, 450);
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-                int positionY = row * 50 + 2;
-                int positionX = col * 50 + 2;
-                int width = 46;
-                context.setFill(fxColor);
-                context.fillRoundRect(positionX, positionY, width, width, 10, 10);
-            }
-        }
-        canvas.setStyle("-fx-background-color: white;");
-        awtColor = Color.RED;
-        r = awtColor.getRed();
-        g = awtColor.getGreen();
-        b = awtColor.getBlue();
-        a = awtColor.getAlpha();
-        opacity = a / 255.0;
-        fxColor = javafx.scene.paint.Color.rgb(r, g, b, opacity);
-        context.setStroke(fxColor);
-        context.setLineWidth(5);
-        context.strokeRoundRect(playerSelectedCol * 50 + 2,
-                playerSelectedRow * 50 + 2, 46, 46, 10, 10);
-        int[][] initial = gameboard.getBoard();
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-                int positionY = row * 50 + 30;
-                int positionX = col * 50 + 20;
-                java.awt.Color awtColor2 = Color.BLACK;
-                int r2 = awtColor.getRed();
-                int g2 = awtColor.getGreen();
-                int b2 = awtColor.getBlue();
-                int a2 = awtColor.getAlpha();
-                double opacity2 = a / 255.0;
-                javafx.scene.paint.Color black = javafx.scene.paint.Color.rgb(r, g, b, opacity);
-                context.setFill(black);
-                if (initial[row][col] != 0) {
-                    context.fillText(initial[row][col] + "", positionX, positionY);
-                }
-            }
-        }
+    public void showStage() {
+        thisStage.show();
     }
 
-    public void canvasMouseClicked() {
-        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                int mouseX = (int) event.getX();
-                int mouseY = (int) event.getY();
-                playerSelectedRow = (int) (mouseY / 50);
-                playerSelectedCol = (int) (mouseX / 50);
-                drawOnCanvas(canvas.getGraphicsContext2D());
-            }
-        });
+    public int getLevelFlag() {
+        return levelFlag;
     }
 
-    public void noDifficultyChosen() {
-        Alert errorNoDifficulty = new Alert(Alert.AlertType.ERROR);
-        errorNoDifficulty.setHeaderText("Error");
-        errorNoDifficulty.setContentText("You have to choose difficulty level");
-        errorNoDifficulty.showAndWait();
+    public void setLevelFlag(int levelFlag) {
+        this.levelFlag = levelFlag;
     }
 
-    public void exitGame() {
+    public void openBoard(int levelFlag) {
+        setLevelFlag(levelFlag);
+        SudokuController sudokuController = new SudokuController(this);
+        thisStage.close();
+        sudokuController.showStage();
+    }
+
+    public void loadClicked(ActionEvent actionEvent) {
+    }
+
+    public void exitClicked() {
         Platform.exit();
         System.exit(0);
     }
 
-    public void easyClicked() {
-        difficulty = Difficulty.Easy;
-    }
-
-    public void mediumClicked() {
-        difficulty = Difficulty.Medium;
-    }
-
-    public void hardClicked() {
-        difficulty = Difficulty.Hard;
-    }
-
-    public void newGameClicked() {
-        if (difficulty != null) {
-            gameboard.clearBoard();
-            drawOnCanvas(canvas.getGraphicsContext2D());
-            gameboard.solveGame();
-            gameboard.changeBoard(difficulty);
-            drawOnCanvas(canvas.getGraphicsContext2D());
-        } else {
-            noDifficultyChosen();
-        }
-    }
 }
