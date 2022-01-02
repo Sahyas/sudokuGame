@@ -1,10 +1,7 @@
-import java.awt.*;
-import java.io.File;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.TextField;
+
 
 public class SudokuController implements Initializable {
     @FXML
@@ -68,7 +65,6 @@ public class SudokuController implements Initializable {
     SudokuSolver solver;
     int playerSelectedRow;
     int playerSelectedCol;
-
 
 
     @Override
@@ -211,103 +207,94 @@ public class SudokuController implements Initializable {
     }
 
     public void saveClicked(ActionEvent actionEvent) {
-        }
+    }
 
     public void oneClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 1, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 1, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 1);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void twoClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 2, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 2, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 2);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void threeClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 3, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 3, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 3);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void fourClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 4, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 4, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 4);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void fiveClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 5, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 5, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 5);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void sixClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 6, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 6, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 6);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void sevenClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 7, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 7, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 7);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void eightClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 8, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 8, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 8);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }
 
     public void nineClicked() {
-        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0 &&
-                gameboard.check(playerSelectedRow, playerSelectedCol, 9, gameboard)) {
+        if (gameboard.get(playerSelectedRow, playerSelectedCol) == 0
+                && gameboard.check(playerSelectedRow, playerSelectedCol, 9, gameboard)) {
             gameboard.set(playerSelectedRow, playerSelectedCol, 9);
             drawOnCanvas(canvas.getGraphicsContext2D());
-        }
-        else {
+        } else {
             badNumberWarning();
         }
     }

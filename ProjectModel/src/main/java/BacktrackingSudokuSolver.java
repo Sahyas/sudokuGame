@@ -6,12 +6,12 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
 
     public void randomBoard(SudokuBoard board) {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i=1; i<10; i++) {
+        for (int i = 1; i < 10; i++) {
             list.add(i);
         }
         Collections.shuffle(list);
-        for(int i = 0; i < 5; i++) {
-            if(board.get(0,i) == 0 && canInsert(0,i,list.get(i), board)) {
+        for (int i = 0; i < 5; i++) {
+            if (board.get(0, i) == 0 && canInsert(0, i, list.get(i), board)) {
                 board.set(0, i, list.get(i));
             }
         }
