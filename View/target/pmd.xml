@@ -1,31 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.38.0" timestamp="2021-12-15T03:00:14.669">
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.38.0" timestamp="2022-01-02T18:24:48.354">
+<file name="C:\Users\Szymon\Desktop\sudoku\jm_sr_1345_05\View\src\main\java\App.java">
+<violation beginline="2" endline="2" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" class="App" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.Objects'
+</violation>
+<violation beginline="4" endline="4" begincolumn="1" endcolumn="30" rule="UnnecessaryImport" ruleset="Code Style" class="App" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.fxml.FXMLLoader'
+</violation>
+<violation beginline="5" endline="5" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" class="App" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.Parent'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="26" rule="UnnecessaryImport" ruleset="Code Style" class="App" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.Scene'
+</violation>
+</file>
 <file name="C:\Users\Szymon\Desktop\sudoku\jm_sr_1345_05\View\src\main\java\MenuController.java">
-<violation beginline="49" endline="49" begincolumn="9" endcolumn="22" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="MenuController" method="initialize" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
+<violation beginline="1" endline="1" begincolumn="1" endcolumn="22" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.awt.Color'
+</violation>
+<violation beginline="4" endline="4" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.Objects'
+</violation>
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="33" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.event.EventHandler'
+</violation>
+<violation beginline="12" endline="12" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.Node'
+</violation>
+<violation beginline="13" endline="13" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.Parent'
+</violation>
+<violation beginline="15" endline="15" begincolumn="1" endcolumn="34" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.canvas.Canvas'
+</violation>
+<violation beginline="16" endline="16" begincolumn="1" endcolumn="43" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.canvas.GraphicsContext'
+</violation>
+<violation beginline="17" endline="17" begincolumn="1" endcolumn="34" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.control.Alert'
+</violation>
+<violation beginline="20" endline="20" begincolumn="1" endcolumn="37" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'javafx.scene.input.MouseEvent'
+</violation>
+<violation beginline="23" endline="23" begincolumn="1" endcolumn="49" rule="UnnecessaryImport" ruleset="Code Style" class="MenuController" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'org.checkerframework.checker.units.qual.A'
+</violation>
+<violation beginline="29" endline="29" begincolumn="32" endcolumn="49" rule="UnusedPrivateField" ruleset="Best Practices" class="MenuController" variable="fileSudokuBoardDao" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'fileSudokuBoardDao'.
+</violation>
+<violation beginline="30" endline="30" begincolumn="25" endcolumn="35" rule="UnusedPrivateField" ruleset="Best Practices" class="MenuController" variable="fileChooser" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'fileChooser'.
+</violation>
+<violation beginline="31" endline="31" begincolumn="32" endcolumn="50" rule="UnusedPrivateField" ruleset="Best Practices" class="MenuController" variable="sudokuBoardFromFile" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'sudokuBoardFromFile'.
+</violation>
+<violation beginline="32" endline="32" begincolumn="27" endcolumn="31" rule="UnusedPrivateField" ruleset="Best Practices" class="MenuController" variable="level" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'level'.
+</violation>
+<violation beginline="33" endline="33" begincolumn="20" endcolumn="27" rule="UnusedPrivateField" ruleset="Best Practices" class="MenuController" variable="language" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'language'.
+</violation>
+<violation beginline="34" endline="34" begincolumn="28" endcolumn="33" rule="UnusedPrivateField" ruleset="Best Practices" class="MenuController" variable="bundle" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'bundle'.
+</violation>
+</file>
+<file name="C:\Users\Szymon\Desktop\sudoku\jm_sr_1345_05\View\src\main\java\SudokuController.java">
+<violation beginline="26" endline="26" begincolumn="31" endcolumn="34" rule="UnusedPrivateField" ruleset="Best Practices" class="SudokuController" variable="test" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'test'.
+</violation>
+<violation beginline="30" endline="30" begincolumn="32" endcolumn="49" rule="UnusedPrivateField" ruleset="Best Practices" class="SudokuController" variable="fileSudokuBoardDao" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'fileSudokuBoardDao'.
+</violation>
+<violation beginline="31" endline="31" begincolumn="25" endcolumn="35" rule="UnusedPrivateField" ruleset="Best Practices" class="SudokuController" variable="fileChooser" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'fileChooser'.
+</violation>
+<violation beginline="32" endline="32" begincolumn="32" endcolumn="50" rule="UnusedPrivateField" ruleset="Best Practices" class="SudokuController" variable="sudokuBoardFromFile" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'sudokuBoardFromFile'.
+</violation>
+<violation beginline="33" endline="33" begincolumn="27" endcolumn="31" rule="UnusedPrivateField" ruleset="Best Practices" class="SudokuController" variable="level" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'level'.
+</violation>
+<violation beginline="34" endline="34" begincolumn="20" endcolumn="27" rule="UnusedPrivateField" ruleset="Best Practices" class="SudokuController" variable="language" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'language'.
+</violation>
+<violation beginline="81" endline="81" begincolumn="9" endcolumn="22" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="SudokuController" method="initialize" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
 Unnecessary use of fully qualified name 'java.awt.Color' due to existing import 'java.awt.Color'
 </violation>
-<violation beginline="75" endline="75" begincolumn="9" endcolumn="22" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="MenuController" method="drawOnCanvas" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
+<violation beginline="132" endline="132" begincolumn="9" endcolumn="22" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="SudokuController" method="drawOnCanvas" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
 Unnecessary use of fully qualified name 'java.awt.Color' due to existing import 'java.awt.Color'
 </violation>
-<violation beginline="93" endline="93" begincolumn="32" endcolumn="40" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="awtColor2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+<violation beginline="166" endline="166" begincolumn="32" endcolumn="40" rule="UnusedLocalVariable" ruleset="Best Practices" class="SudokuController" method="drawOnCanvas" variable="awtColor2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
 Avoid unused local variables such as 'awtColor2'.
 </violation>
-<violation beginline="93" endline="93" begincolumn="17" endcolumn="30" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="MenuController" method="drawOnCanvas" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
+<violation beginline="166" endline="166" begincolumn="17" endcolumn="30" rule="UnnecessaryFullyQualifiedName" ruleset="Code Style" class="SudokuController" method="drawOnCanvas" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryfullyqualifiedname" priority="4">
 Unnecessary use of fully qualified name 'java.awt.Color' due to existing import 'java.awt.Color'
 </violation>
-<violation beginline="94" endline="94" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="r2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+<violation beginline="167" endline="167" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="SudokuController" method="drawOnCanvas" variable="r2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
 Avoid unused local variables such as 'r2'.
 </violation>
-<violation beginline="95" endline="95" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="g2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+<violation beginline="168" endline="168" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="SudokuController" method="drawOnCanvas" variable="g2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
 Avoid unused local variables such as 'g2'.
 </violation>
-<violation beginline="96" endline="96" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="b2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+<violation beginline="169" endline="169" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="SudokuController" method="drawOnCanvas" variable="b2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
 Avoid unused local variables such as 'b2'.
 </violation>
-<violation beginline="97" endline="97" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="a2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+<violation beginline="170" endline="170" begincolumn="21" endcolumn="22" rule="UnusedLocalVariable" ruleset="Best Practices" class="SudokuController" method="drawOnCanvas" variable="a2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
 Avoid unused local variables such as 'a2'.
 </violation>
-<violation beginline="98" endline="98" begincolumn="24" endcolumn="31" rule="UnusedLocalVariable" ruleset="Best Practices" class="MenuController" method="drawOnCanvas" variable="opacity2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+<violation beginline="171" endline="171" begincolumn="24" endcolumn="31" rule="UnusedLocalVariable" ruleset="Best Practices" class="SudokuController" method="drawOnCanvas" variable="opacity2" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
 Avoid unused local variables such as 'opacity2'.
 </violation>
 </file>
