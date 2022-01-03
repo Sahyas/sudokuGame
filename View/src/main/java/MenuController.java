@@ -1,41 +1,32 @@
-import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.checkerframework.checker.units.qual.A;
 
 public class MenuController implements Initializable {
-    private final Stage thisStage;
+    private Stage stage;
+    private String loadFilePath;
     private int levelFlag;
     public Button startButton;
+    private Scene scene;
     private FileSudokuBoardDao fileSudokuBoardDao;
     private FileChooser fileChooser;
     private static SudokuBoard sudokuBoardFromFile;
     private static String level;
     private String language;
-    private ResourceBundle bundle = ResourceBundle.getBundle("Language");
-    @FXML
-    private ComboBox comboBoxSystemLang;
-    @FXML
-    private ComboBox comboBoxSystemDifficult;
+    Locale locale = new Locale("pl");
+    private ResourceBundle bundle = ResourceBundle.getBundle("Language", locale);
     @FXML
     Button easyButton;
     @FXML
@@ -44,37 +35,83 @@ public class MenuController implements Initializable {
     Button hardButton;
     @FXML
     Button exitButton;
+    @FXML
+    Button loadButton;
+    @FXML
+    private ToggleButton buttonLanguageEnglish;
+    @FXML
+    private ToggleButton buttonLanguagePolish;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         easyButton.setOnAction(actionEvent -> openBoard(1));
         mediumButton.setOnAction(actionEvent -> openBoard(2));
         hardButton.setOnAction(actionEvent -> openBoard(3));
+        loadButton.setOnAction(actionEvent -> loadClicked());
+        final ToggleGroup group = new ToggleGroup();
+        buttonLanguagePolish.setToggleGroup(group);
+        buttonLanguagePolish.setSelected(true);
+        buttonLanguageEnglish.setToggleGroup(group);
+
+        buttonLanguagePolish.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            changeLanguage("pl");
+            stage.close();
+            stage = new Stage();
+            try {
+                bundle = ResourceBundle.getBundle("Language", locale);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
+                loader.setController(this);
+                loader.setResources(bundle);
+                scene = new Scene(loader.load(), 300, 450);
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.setTitle("applicationTitle");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            showStage();
+        }));
+
+        buttonLanguageEnglish.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            changeLanguage("en");
+            stage.close();
+            stage = new Stage();
+            try {
+                bundle = ResourceBundle.getBundle("Language", locale);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
+                loader.setController(this);
+                loader.setResources(bundle);
+                scene = new Scene(loader.load(), 300, 450);
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.setTitle("applicationTitle");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            showStage();
+        }));
     }
 
 
     public MenuController() {
-        thisStage = new Stage();
-
+        stage = new Stage();
         try {
+            bundle = ResourceBundle.getBundle("Language", locale);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
-
-            // Set this class as the controller
             loader.setController(this);
-
-            // Load the scene
-            thisStage.setScene(new Scene(loader.load()));
-
-            // Setup the window/stage
-            thisStage.setTitle("Menu Glowne");
-
+            loader.setResources(bundle);
+            scene = new Scene(loader.load(), 300, 450);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.setTitle("applicationTitle");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void showStage() {
-        thisStage.show();
+        stage.show();
     }
 
     public int getLevelFlag() {
@@ -88,11 +125,29 @@ public class MenuController implements Initializable {
     public void openBoard(int levelFlag) {
         setLevelFlag(levelFlag);
         SudokuController sudokuController = new SudokuController(this);
-        thisStage.close();
+        stage.close();
         sudokuController.showStage();
     }
 
-    public void loadClicked(ActionEvent actionEvent) {
+    public void loadClicked() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("jd");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".save", "*.save"));
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            loadFilePath = file.getAbsolutePath();
+            openBoard(0);
+        }
+    }
+
+    public void changeLanguage(String languageCode) {
+        if (languageCode.length() == 2) {
+            this.locale = new Locale(languageCode);
+        }
+    }
+
+    public String getLoadFilePath() {
+        return loadFilePath;
     }
 
     public void exitClicked() {
@@ -100,4 +155,7 @@ public class MenuController implements Initializable {
         System.exit(0);
     }
 
+    public Locale getLocale() {
+        return locale;
+    }
 }

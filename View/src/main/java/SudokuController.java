@@ -1,8 +1,8 @@
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -32,11 +31,7 @@ public class SudokuController implements Initializable {
     private static SudokuBoard sudokuBoardFromFile;
     private static String level;
     private String language;
-    private ResourceBundle bundle = ResourceBundle.getBundle("Language");
-    @FXML
-    private ComboBox comboBoxSystemLang;
-    @FXML
-    private ComboBox comboBoxSystemDifficult;
+    private ResourceBundle bundle;
     @FXML
     Button buttonOne;
     @FXML
@@ -99,22 +94,25 @@ public class SudokuController implements Initializable {
                 context.fillRoundRect(positionX, positionY, width, width, 10, 10);
             }
         }
-
+        if (menuController.getLevelFlag() == 0) {
+            try {
+                gameboard = this.loadGame(menuController.getLoadFilePath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public SudokuController(MenuController menuController) {
+
         this.menuController = menuController;
         stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
-
-            // Set this class as the controller
             loader.setController(this);
-
-            // Load the scene
+            bundle = ResourceBundle.getBundle("Language", menuController.getLocale());
+            loader.setResources(bundle);
             stage.setScene(new Scene(loader.load()));
-
-            // Setup the window/stage
             stage.setTitle("Sudoku");
 
         } catch (IOException e) {
@@ -124,6 +122,9 @@ public class SudokuController implements Initializable {
             gameboard.clearBoard();
             gameboard.solveGame();
             gameboard.changeBoard(difficulty);
+            drawOnCanvas(canvas.getGraphicsContext2D());
+        }
+        if (menuController.getLevelFlag() == 0) {
             drawOnCanvas(canvas.getGraphicsContext2D());
         }
     }
@@ -191,6 +192,11 @@ public class SudokuController implements Initializable {
         });
     }
 
+    public SudokuBoard loadGame(String name) throws IOException {
+        SudokuBoardDaoFactory daoFactory = new SudokuBoardDaoFactory();
+        return daoFactory.getFileDao(name).read();
+    }
+
     public void exitGame() {
         menuController.showStage();
         this.stage.close();
@@ -206,7 +212,20 @@ public class SudokuController implements Initializable {
         stage.show();
     }
 
-    public void saveClicked(ActionEvent actionEvent) {
+    public void saveClicked() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("jd");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".save", "*.save"));
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            saveToFile(file.getAbsolutePath());
+        }
+    }
+
+    public void saveToFile(String name) {
+        SudokuBoardDaoFactory daoFactory = new SudokuBoardDaoFactory();
+        daoFactory.getFileDao(name).write(gameboard);
     }
 
     public void oneClicked() {
