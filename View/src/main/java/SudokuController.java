@@ -13,24 +13,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class SudokuController implements Initializable {
-    @FXML
-    private GridPane sudokuBoardGrid;
+    private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
     private final BacktrackingSudokuSolver test2 = new BacktrackingSudokuSolver();
     private final SudokuBoard test = new SudokuBoard(test2);
     private final MenuController menuController;
     private final Stage stage;
     private Difficulty difficulty;
-    private FileSudokuBoardDao fileSudokuBoardDao;
-    private FileChooser fileChooser;
-    private static SudokuBoard sudokuBoardFromFile;
-    private static String level;
-    private String language;
     private ResourceBundle bundle;
     @FXML
     Button buttonOne;
@@ -104,18 +99,18 @@ public class SudokuController implements Initializable {
     }
 
     public SudokuController(MenuController menuController) {
-
         this.menuController = menuController;
         stage = new Stage();
         try {
+            LOGGER.info("Setting scene");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
             loader.setController(this);
             bundle = ResourceBundle.getBundle("Language", menuController.getLocale());
             loader.setResources(bundle);
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Sudoku");
-
         } catch (IOException e) {
+            LOGGER.error("Error while setting scene", e);
             e.printStackTrace();
         }
         if (difficulty != null) {
@@ -203,6 +198,7 @@ public class SudokuController implements Initializable {
     }
 
     public void badNumberWarning() {
+        LOGGER.warn("Bad number picked");
         PopOut.messageBox(bundle.getString("_warning"),
                 bundle.getString("_badNumber"), Alert.AlertType.WARNING);
     }
@@ -213,13 +209,17 @@ public class SudokuController implements Initializable {
     }
 
     public void saveClicked() {
+        LOGGER.info("Saving file");
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("jd");
+        fileChooser.setTitle(bundle.getString("_saving"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".save", "*.save"));
         File file = fileChooser.showSaveDialog(stage);
 
         if (file != null) {
+            LOGGER.info("File saved succesfully");
             saveToFile(file.getAbsolutePath());
+        } else {
+            LOGGER.warn("Failed during saving file - file is null");
         }
     }
 

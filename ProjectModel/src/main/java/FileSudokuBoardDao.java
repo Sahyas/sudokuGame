@@ -4,9 +4,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class FileSudokuBoardDao implements  Dao<SudokuBoard>, AutoCloseable {
     String fileName;
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileSudokuBoardDao.class);
 
     FileSudokuBoardDao(String fileName) {
         this.fileName = fileName;
@@ -19,11 +23,11 @@ public class FileSudokuBoardDao implements  Dao<SudokuBoard>, AutoCloseable {
             SudokuBoard board = (SudokuBoard) ois.readObject();
             return board;
         } catch (FileNotFoundException e) {
-            System.out.println("File " + fileName + " not found");
+            LOGGER.warn("File " + fileName + " not found");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println("Class not found in file " + fileName);
+            LOGGER.warn("Class not found in file " + fileName);
         }
         return null;
     }
@@ -34,7 +38,7 @@ public class FileSudokuBoardDao implements  Dao<SudokuBoard>, AutoCloseable {
              ObjectOutputStream oos = new ObjectOutputStream(fout);) {
             oos.writeObject(board);
         } catch (FileNotFoundException e) {
-            System.out.println("File " + fileName + " not found");
+            LOGGER.warn("File " + fileName + " not found");
         } catch (IOException e) {
             e.printStackTrace();
         }

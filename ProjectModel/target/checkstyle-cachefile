@@ -1,10 +1,10 @@
-#Mon Jan 03 17:44:02 CET 2022
+#Tue Jan 04 22:42:31 CET 2022
 configuration*?=30DE792AA318DE376669094209C8E719A44AA4C1
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\Difficulty.java=1639507593936
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuRow.java=1639513076237
-C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuBoard.java=1641137611727
+C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuBoard.java=1641328004430
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuContainer.java=1639514639109
-C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\FileSudokuBoardDao.java=1640095732377
+C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\FileSudokuBoardDao.java=1641320579294
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuSolver.java=1638310895210
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\Dao.java=1638308938389
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuBox.java=1639517396076
@@ -13,3 +13,4 @@ C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\jav
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuBoardDaoFactory.java=1639514737712
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\BadContainerSizeException.java=1638306550468
 C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\java\\SudokuField.java=1641137673009
+C\:\\Users\\Szymon\\Desktop\\sudoku\\jm_sr_1345_05\\ProjectModel\\src\\main\\resources\\log4j.properties=1641324298989

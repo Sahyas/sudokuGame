@@ -1,26 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd-cpd>
-   <duplication lines="17" tokens="103">
-      <file column="32" endcolumn="11" endline="73" line="57"
-            path="C:\Users\Szymon\Desktop\sudoku\jm_sr_1345_05\View\src\main\java\MenuController.java"/>
-      <file column="32" endcolumn="11" endline="92" line="76"
-            path="C:\Users\Szymon\Desktop\sudoku\jm_sr_1345_05\View\src\main\java\MenuController.java"/>
-      <codefragment><![CDATA[            changeLanguage("pl");
-            stage.close();
-            stage = new Stage();
-            try {
-                bundle = ResourceBundle.getBundle("Language", locale);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
-                loader.setController(this);
-                loader.setResources(bundle);
-                scene = new Scene(loader.load(), 300, 450);
-                stage.setResizable(false);
-                stage.setScene(scene);
-                stage.setTitle("applicationTitle");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            showStage();
-        }));]]></codefragment>
-   </duplication>
-</pmd-cpd>
+<pmd-cpd/>

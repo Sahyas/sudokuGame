@@ -1,8 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 View,default,SudokuField,5,93,1,19,2,27,1,18,0,9
-View,default,SudokuBoard,74,479,15,67,16,100,9,50,1,17
+View,default,SudokuBoard,4,526,3,75,2,109,3,54,0,18
 View,default,Difficulty,0,21,0,0,0,2,0,1,0,1
-View,default,FileSudokuBoardDao,29,42,0,0,12,13,0,4,0,4
+View,default,FileSudokuBoardDao,29,46,0,0,12,14,0,5,0,5
 View,default,BacktrackingSudokuSolver,5,202,1,37,1,47,2,22,1,4
 View,default,SudokuRow,0,15,0,0,0,4,0,2,0,2
 View,default,BadContainerSizeException,4,0,0,0,2,0,1,0,1,0

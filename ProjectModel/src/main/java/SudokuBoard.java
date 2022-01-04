@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SudokuBoard implements Serializable, Cloneable {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SudokuBoard.class);
     private List<List<SudokuField>> board;
     private final SudokuSolver sudokuSolver;
     public static final int SIZE = 9;
@@ -89,17 +91,6 @@ public class SudokuBoard implements Serializable, Cloneable {
             }
         }
         return true;
-    }
-
-    //WYSWIETLA TABLICE//
-    public void print() {
-        for (int r = 0; r < 9; r++) {
-            for (int d = 0; d < 9; d++) {
-                System.out.print(get(r, d));
-                System.out.print("|");
-            }
-            System.out.print("\n");
-        }
     }
 
     public SudokuBox getBox(int x, int y) {

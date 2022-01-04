@@ -1,6 +1,5 @@
-MenuController.class
-StageSetup.class
 App.class
 SudokuController.class
 PopOut.class
 SudokuController$1.class
+MenuController.class

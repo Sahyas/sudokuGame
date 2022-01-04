@@ -97,7 +97,6 @@ public class SudokuBoardTest {
         assertFalse(test3.checkBoard());
         SudokuBoard test4 = new SudokuBoard(backtracking);
         if (board.solveGame()) {
-            board.print();
         }
     }
 
@@ -227,6 +226,21 @@ public class SudokuBoardTest {
             }
         }
         assertEquals(45, blanks);
+    }
+
+    @Test
+    public void checkTest() {
+        BacktrackingSudokuSolver backtracking = new BacktrackingSudokuSolver();
+        SudokuBoard board1 = new SudokuBoard(backtracking);
+        assertTrue(board1.check(0,1,1, board1));
+        board1.set(0,1,1);
+        assertFalse(board1.check(0,1,1, board1));
+        board1.set(0,1,0);
+        assertTrue(board1.check(1,0,1, board1));
+        board1.set(1,0,1);
+        assertFalse(board1.check(1,0,1, board1));
+        board1.set(1,0,0);
+
     }
 }
 
