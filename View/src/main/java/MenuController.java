@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
@@ -27,6 +28,7 @@ public class MenuController implements Initializable {
     private String language;
     Locale locale = new Locale("pl");
     private ResourceBundle bundle = ResourceBundle.getBundle("Language", locale);
+    private ResourceBundle bundle2 = ResourceBundle.getBundle("Authors", locale);
     @FXML
     Button easyButton;
     @FXML
@@ -41,6 +43,13 @@ public class MenuController implements Initializable {
     private ToggleButton buttonLanguageEnglish;
     @FXML
     private ToggleButton buttonLanguagePolish;
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,43 +61,16 @@ public class MenuController implements Initializable {
         buttonLanguagePolish.setToggleGroup(group);
         buttonLanguagePolish.setSelected(true);
         buttonLanguageEnglish.setToggleGroup(group);
+        label1.setText(bundle2.getString("Title"));
+        label2.setText(bundle2.getString("1"));
+        label3.setText(bundle2.getString("2"));
 
         buttonLanguagePolish.selectedProperty().addListener(((observable, oldValue, newValue) -> {
             changeLanguage("pl");
-            stage.close();
-            stage = new Stage();
-            try {
-                bundle = ResourceBundle.getBundle("Language", locale);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
-                loader.setController(this);
-                loader.setResources(bundle);
-                scene = new Scene(loader.load(), 300, 450);
-                stage.setResizable(false);
-                stage.setScene(scene);
-                stage.setTitle("applicationTitle");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            showStage();
         }));
 
         buttonLanguageEnglish.selectedProperty().addListener(((observable, oldValue, newValue) -> {
             changeLanguage("en");
-            stage.close();
-            stage = new Stage();
-            try {
-                bundle = ResourceBundle.getBundle("Language", locale);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
-                loader.setController(this);
-                loader.setResources(bundle);
-                scene = new Scene(loader.load(), 300, 450);
-                stage.setResizable(false);
-                stage.setScene(scene);
-                stage.setTitle("applicationTitle");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            showStage();
         }));
     }
 
@@ -100,7 +82,7 @@ public class MenuController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
             loader.setController(this);
             loader.setResources(bundle);
-            scene = new Scene(loader.load(), 300, 450);
+            scene = new Scene(loader.load(), 300, 550);
             stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("applicationTitle");
@@ -141,9 +123,19 @@ public class MenuController implements Initializable {
     }
 
     public void changeLanguage(String languageCode) {
-        if (languageCode.length() == 2) {
-            this.locale = new Locale(languageCode);
+        this.locale = new Locale(languageCode);
+        try {
+            bundle = ResourceBundle.getBundle("Language", locale);
+            bundle2 = ResourceBundle.getBundle("Authors", locale);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
+            loader.setController(this);
+            loader.setResources(bundle);
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("applicationTitle");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        showStage();
     }
 
     public String getLoadFilePath() {
@@ -158,4 +150,6 @@ public class MenuController implements Initializable {
     public Locale getLocale() {
         return locale;
     }
+
+
 }

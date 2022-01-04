@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="form" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="form" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="30.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%_ChooseDifficulty" textAlignment="CENTER" wrappingWidth="255.83984375">
          <font>
@@ -20,5 +21,8 @@
       <Button fx:id="loadButton" layoutX="100.0" layoutY="262.0" mnemonicParsing="false" onMouseClicked="#loadClicked" prefHeight="50.0" prefWidth="100.0" text="%_Load" />
       <ToggleButton fx:id="buttonLanguageEnglish" layoutX="56.0" layoutY="385.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="88.0" text="%_LanguageEnglish" textAlignment="CENTER" />
       <ToggleButton fx:id="buttonLanguagePolish" layoutX="156.0" layoutY="385.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="88.0" text="%_LanguagePolish" textAlignment="CENTER" />
+      <Label fx:id="label1" layoutX="55.0" layoutY="451.0" prefHeight="17.0" prefWidth="188.0" text="Label" textAlignment="CENTER" />
+      <Label fx:id="label2" layoutX="53.0" layoutY="485.0" prefHeight="17.0" prefWidth="188.0" text="Label" textAlignment="CENTER" />
+      <Label fx:id="label3" layoutX="54.0" layoutY="519.0" prefHeight="17.0" prefWidth="188.0" text="Label" textAlignment="CENTER" />
    </children>
 </Pane>
