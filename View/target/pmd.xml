@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.38.0" timestamp="2022-01-04T21:36:40.396">
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.38.0" timestamp="2022-01-11T22:58:07.988">
 <file name="C:\Users\Szymon\Desktop\sudoku\jm_sr_1345_05\View\src\main\java\Log4jLevels.java">
 <violation beginline="1" endline="1" begincolumn="1" endcolumn="30" rule="UnnecessaryImport" ruleset="Code Style" class="Log4jLevels" externalInfoUrl="https://pmd.github.io/pmd-6.38.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
 Unused import 'org.apache.log4j.Level'
@@ -24,7 +24,7 @@ Unused import 'org.slf4j.Logger'
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 40941 out of bounds for length 10593
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 41787 out of bounds for length 10737
 	at org.objectweb.asm.ClassReader.<init>(Unknown Source)
 	at org.objectweb.asm.ClassReader.<init>(Unknown Source)
 	at org.objectweb.asm.ClassReader.<init>(Unknown Source)

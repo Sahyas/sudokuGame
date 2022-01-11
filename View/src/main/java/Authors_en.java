@@ -2,7 +2,6 @@ import java.util.ListResourceBundle;
 
 public class Authors_en extends ListResourceBundle {
 
-    /*------------------------ METHODS REGION ------------------------*/
     @Override
     protected Object[][] getContents() {
         return new Object[][]{

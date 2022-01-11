@@ -1,5 +1,8 @@
-public interface Dao<T> {
-    T read();
+import exceptions.LoadFromFileException;
+import exceptions.WriteToFileException;
 
-    void write(T obj);
+public interface Dao<T> {
+    T read() throws LoadFromFileException;
+
+    void write(T obj) throws WriteToFileException;
 }

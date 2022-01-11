@@ -4,11 +4,8 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class SudokuBoard implements Serializable, Cloneable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SudokuBoard.class);
     private List<List<SudokuField>> board;
     private final SudokuSolver sudokuSolver;
     public static final int SIZE = 9;

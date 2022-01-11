@@ -57,30 +57,6 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
     }
 
     public boolean canInsert(int row, int column, int number, SudokuBoard board) {
-        for (int i = 0; i < 9; i++) {
-            if (board.get(row, i) == number) {
-                return false;
-            }
-        }
-        //W KOLUMNE//
-        for (int i = 0; i < 9; i++) {
-            if (board.get(i, column) == number) {
-                return false;
-            }
-        }
-        int sqrt = (int) Math.sqrt(9);
-        int boxRowStart = row - row % sqrt;
-        int boxColStart = column - column % sqrt;
-        //W KWADRAT//
-        for (int r = boxRowStart;
-             r < boxRowStart + sqrt; r++) {
-            for (int d = boxColStart;
-                 d < boxColStart + sqrt; d++) {
-                if (board.get(r, d) == number) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return board.check(row, column, number, board);
     }
 }

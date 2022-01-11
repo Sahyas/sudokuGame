@@ -1,3 +1,4 @@
+import exceptions.WriteToFileException;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
@@ -225,7 +226,11 @@ public class SudokuController implements Initializable {
 
     public void saveToFile(String name) {
         SudokuBoardDaoFactory daoFactory = new SudokuBoardDaoFactory();
-        daoFactory.getFileDao(name).write(gameboard);
+        try {
+            daoFactory.getFileDao(name).write(gameboard);
+        } catch (WriteToFileException e) {
+            e.printStackTrace();
+        }
     }
 
     public void oneClicked() {

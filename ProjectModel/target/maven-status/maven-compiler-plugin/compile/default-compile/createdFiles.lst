@@ -1,4 +1,7 @@
+exceptions\WriteToFileException.class
+exceptions\LoadFromFileException.class
 SudokuField.class
+exceptions\DaoException.class
 FileSudokuBoardDao.class
 Difficulty.class
 SudokuColumn.class

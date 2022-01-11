@@ -1,9 +1,11 @@
+import exceptions.LoadFromFileException;
+import exceptions.WriteToFileException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,36 +13,31 @@ import org.slf4j.LoggerFactory;
 public class FileSudokuBoardDao implements  Dao<SudokuBoard>, AutoCloseable {
     String fileName;
     private static final Logger LOGGER = LoggerFactory.getLogger(FileSudokuBoardDao.class);
+    private final ResourceBundle bundle = ResourceBundle.getBundle("bundles.exceptions");
 
     FileSudokuBoardDao(String fileName) {
         this.fileName = fileName;
     }
 
     @Override
-    public SudokuBoard read() {
+    public SudokuBoard read() throws LoadFromFileException {
         try (FileInputStream fin = new FileInputStream(fileName);
              ObjectInputStream ois = new ObjectInputStream(fin)) {
-            SudokuBoard board = (SudokuBoard) ois.readObject();
-            return board;
-        } catch (FileNotFoundException e) {
-            LOGGER.warn("File " + fileName + " not found");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            LOGGER.warn("Class not found in file " + fileName);
+            return (SudokuBoard) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            LOGGER.warn("File " + fileName + " not found", e);
+            throw new LoadFromFileException(bundle.getString("LOAD_FROM_FILE"), e);
         }
-        return null;
     }
 
     @Override
-    public void write(SudokuBoard board) {
+    public void write(SudokuBoard board) throws WriteToFileException {
         try (FileOutputStream fout = new FileOutputStream(fileName);
-             ObjectOutputStream oos = new ObjectOutputStream(fout);) {
+             ObjectOutputStream oos = new ObjectOutputStream(fout)) {
             oos.writeObject(board);
-        } catch (FileNotFoundException e) {
-            LOGGER.warn("File " + fileName + " not found");
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            throw new WriteToFileException(bundle.getString("WRITE_TO_FILE"), e);
         }
     }
 
