@@ -81,4 +81,10 @@ class SudokuFieldTest {
         assertTrue(testSudokuField.equals(testSudokuField2)
                 && testSudokuField2.equals(testSudokuField));
     }
+
+    @Test
+    public void simpleEqualsContract() {
+        EqualsVerifier.simple().forClass(SudokuField.class).verify();
+
+    }
 }

@@ -1,9 +1,13 @@
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 
 public class SudokuField implements Serializable, Cloneable, Comparable<SudokuField> {
     private int value;
+
+    private boolean isEditable = false;
 
     public SudokuField() {
     }
@@ -12,6 +16,14 @@ public class SudokuField implements Serializable, Cloneable, Comparable<SudokuFi
         if (value >= 1 && value <= 9) {
             this.value = value;
         }
+    }
+
+    public boolean isEditable() {
+        return isEditable;
+    }
+
+    public void setEditable(boolean editable) {
+        isEditable = editable;
     }
 
     public int getFieldValue() {
@@ -28,6 +40,7 @@ public class SudokuField implements Serializable, Cloneable, Comparable<SudokuFi
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("value", value)
+                .add("isEditable", isEditable)
                 .toString();
     }
 
@@ -36,16 +49,20 @@ public class SudokuField implements Serializable, Cloneable, Comparable<SudokuFi
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+
+        if (!(o instanceof SudokuField)) {
             return false;
         }
+
         SudokuField that = (SudokuField) o;
-        return value == that.value;
+
+        return new EqualsBuilder().append(value, that.value)
+                .append(isEditable, that.isEditable).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(value);
+        return Objects.hashCode(value, isEditable);
     }
 
     @Override

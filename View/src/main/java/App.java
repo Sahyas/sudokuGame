@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         MenuController menuController = new MenuController();
         menuController.showStage();
     }

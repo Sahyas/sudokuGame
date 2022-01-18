@@ -44,6 +44,10 @@ public class SudokuBoard implements Serializable, Cloneable {
         }
     }
 
+    public SudokuField getField(int x, int y) {
+        return board.get(x).get(y);
+    }
+
     public boolean check(int row, int column, int number, SudokuBoard board) {
         for (int i = 0; i < 9; i++) {
             if (board.get(row, i) == number) {

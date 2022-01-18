@@ -1,8 +1,11 @@
+import exceptions.DaoException;
+import exceptions.DbLoadException;
 import exceptions.WriteToFileException;
 import java.awt.Color;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,8 +16,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +31,8 @@ public class SudokuController implements Initializable {
     private final Stage stage;
     private Difficulty difficulty;
     private ResourceBundle bundle;
+    SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+    JdbcSudokuBoardDao base;
     @FXML
     Button buttonOne;
     @FXML
@@ -92,15 +97,16 @@ public class SudokuController implements Initializable {
         }
         if (menuController.getLevelFlag() == 0) {
             try {
-                gameboard = this.loadGame(menuController.getLoadFilePath());
-            } catch (IOException e) {
+                gameboard = this.loadGame(menuController.getChosenIndex());
+            } catch (IOException | DbLoadException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public SudokuController(MenuController menuController) {
+    public SudokuController(MenuController menuController) throws SQLException {
         this.menuController = menuController;
+        base = factory.getDataBaseDao("DataBase");
         stage = new Stage();
         try {
             LOGGER.info("Setting scene");
@@ -188,9 +194,8 @@ public class SudokuController implements Initializable {
         });
     }
 
-    public SudokuBoard loadGame(String name) throws IOException {
-        SudokuBoardDaoFactory daoFactory = new SudokuBoardDaoFactory();
-        return daoFactory.getFileDao(name).read();
+    public SudokuBoard loadGame(int name) throws IOException, DbLoadException {
+        return base.read(name);
     }
 
     public void exitGame() {
@@ -209,22 +214,18 @@ public class SudokuController implements Initializable {
         stage.show();
     }
 
-    public void saveClicked() {
-        LOGGER.info("Saving file");
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle(bundle.getString("_saving"));
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".save", "*.save"));
-        File file = fileChooser.showSaveDialog(stage);
-
-        if (file != null) {
-            LOGGER.info("File saved succesfully");
-            saveToFile(file.getAbsolutePath());
+    public void saveClicked() throws CloneNotSupportedException, DaoException, SQLException {
+        TextInputDialog td = new TextInputDialog(bundle.getString("_name"));
+        td.setHeaderText(bundle.getString("_choseName"));
+        Optional<String> result = td.showAndWait();
+        if (result.isPresent()) {
+            base.write(gameboard, result.get());
         } else {
             LOGGER.warn("Failed during saving file - file is null");
         }
     }
 
-    public void saveToFile(String name) {
+    public void saveToFile(String name) throws SQLException, DaoException {
         SudokuBoardDaoFactory daoFactory = new SudokuBoardDaoFactory();
         try {
             daoFactory.getFileDao(name).write(gameboard);
