@@ -72,7 +72,7 @@ public class SudokuController implements Initializable {
             difficulty = Difficulty.Medium;
         }
         if (menuController.getLevelFlag() == 3) {
-            difficulty = Difficulty.Medium;
+            difficulty = Difficulty.Hard;
         }
         java.awt.Color awtColor = Color.WHITE;
         int r = awtColor.getRed();
